@@ -1,0 +1,111 @@
+/* General card styles */
+.kanban-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px;
+  max-width: 280px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px; /* General font size */
+  transition: box-shadow 0.2s ease;
+  color: #666;
+}
+
+.kanban-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.kanban-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.kanban-card-header h3 {
+  font-size: 14px; /* Reduce header font size */
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Title styling */
+.kanban-card-title h3 {
+  font-size: 13px; /* Make title smaller */
+  margin: 0 0 10px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Body styling */
+.kanban-card-body {
+  display: flex;
+  align-items: center;
+}
+
+.kanban-card-image {
+  width: 45px; /* Adjust image size */
+  height: 45px;
+  margin-right: 10px;
+}
+
+.kanban-card-details {
+  font-size: 12px; /* Smaller text for details */
+  color: #666;
+}
+
+/* Status, tag, or additional info */
+.kanban-card-body h3 {
+  display: flex;
+  align-items: center;
+  font-size: 13px; /* Smaller text inside body */
+  color: #333;
+}
+.car{
+  display: flex;
+  flex-direction: column;
+}
+.kanban-card-body p {
+  font-size: 12px; /* Smaller text for description */
+  color: #777;
+}
+.toy{
+  font-size: 15px;
+}
+/* Smaller images and icons */
+.kanban-card-body img {
+  width: 20px;
+  height: 20px;
+}
+
+.kanban-card-body svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-card-tag-image {
+  width: 18px; /* Smaller tag image */
+  height: 18px;
+  margin-right: 6px;
+}
+
+/* Improve overall spacing */
+.kanban-card-header,
+.kanban-card-title,
+.kanban-card-body {
+  margin-bottom: 8px;
+}
+
+.kanban-card-title h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20px;
+  max-width: 200px; /* To ensure titles stay within the card width */
+}
