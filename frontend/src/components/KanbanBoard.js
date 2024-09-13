@@ -16,6 +16,7 @@ import np15 from "../images/To-do.svg";
 import np12 from "../images/in-progress.svg";
 import np13 from "../images/Cancelled.svg";
 import np14 from "../images/Backlog.svg";
+import usrs from "../images/user_s.svg";
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState([]);
@@ -118,19 +119,29 @@ const KanbanBoard = () => {
     "Cancel": "Cancel",
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(prevState => !prevState);
+  const [selectedDisplay, setSelectedDisplay] = useState("Selected"); // Set initial value to empty
+
+  const toggleDropdown = (e) => {
+    setSelectedDisplay(e.target.value); // Update state on selection
   };
 
   return (
     <div className="kanban-board">
       <div className="s1">
-        <div className="s2" onClick={toggleDropdown} ref={dropdownRef}>
+        <div className="s2" ref={dropdownRef}>
+
+          <label>
           <img src={disp} alt="Display Icon" className="display-icon" />
           <span>Display</span>
-          {/* Conditionally render the dropdown if it's open */}
-          {isDropdownOpen && (
-            <div className="dropdown s3">
+            <select value={selectedDisplay} onChange={toggleDropdown}>
+              <option value="Selected" disabled hidden>Select Display</option> {/* Placeholder option */}
+              <option value="GroupBy">Group by</option>
+              <option value="SortBy">Sort by</option>
+            </select>
+          </label>
+
+          {selectedDisplay === "GroupBy" && (
+            <div className="dropdown-item">
               <label>
                 Group by:
                 <select value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
@@ -139,6 +150,12 @@ const KanbanBoard = () => {
                   <option value="user">User</option>
                 </select>
               </label>
+            </div>
+          )}
+
+          {/* Conditionally render Sort By dropdown */}
+          {selectedDisplay === "SortBy" && (
+            <div className="dropdown-item">
               <label>
                 Sort by:
                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
@@ -162,6 +179,13 @@ const KanbanBoard = () => {
                 <img
                   src={statusImages[group]}
                   alt={group}
+                  style={{ width: "20px", height: "20px", marginRight: "10px" }}
+                />
+              )}
+              {groupBy === "user" && (
+                <img
+                  src={usrs}
+                  alt={"user_img"}
                   style={{ width: "20px", height: "20px", marginRight: "10px" }}
                 />
               )}

@@ -6,11 +6,20 @@ import np5 from "../images/To-do.svg";
 import np2 from "../images/in-progress.svg";
 import np3 from "../images/Cancelled.svg";
 import np4 from "../images/Backlog.svg";
+import usrs from "../images/user_s.svg";
+
+import np21 from "../images/No-priority.svg";
+import np25 from "../images/SVG - Urgent Priority colour.svg";
+import np22 from "../images/Img - Low Priority.svg";
+import np23 from "../images/Img - High Priority.svg";
+import np24 from "../images/Img - Medium Priority.svg";
+
 import featureImg from "../images/Done.svg"; // Assuming this is the feature image
 import up from "../images/SVG - Urgent Priority grey.svg"
 
 const KanbanCard = ({ ticket, users, groupBy }) => {
   console.log(groupBy);
+  console.log(ticket.priority);
   const priorityLabels = ["No Priority", "Low", "Medium", "High", "Urgent"];
 
   // Map statuses to corresponding images
@@ -22,13 +31,21 @@ const KanbanCard = ({ ticket, users, groupBy }) => {
     "Cancel": np3
   };
 
+  const priorityImages = {
+    0: np21,
+    1: np22,
+    2: np24,
+    3: np23,
+    4: np25
+  };
+
   const user = users.find(user => user.id === ticket.userId);
 
   // Function to truncate title if it has more than 8 words
   const truncateTitle = (title) => {
     const words = title.split(" ");
-    if (words.length > 8) {
-      return words.slice(0, 8).join(" ") + "...";
+    if (words.length > 5) {
+      return words.slice(0, 2).join(" ") + "...";
     }
     return title;
   };
@@ -40,13 +57,17 @@ const KanbanCard = ({ ticket, users, groupBy }) => {
           <div className="kanban-card-header">
             <h3>{ticket.id}</h3>
           </div>
-          <div className="kanban-card-title">
+          <div className="kanban-card-title" style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
+            <img style={{ width: "15px", height: "15px", marginRight: "10px" }} src={statusImages[ticket.status]} alt="Ticket" className="kanban-card-image" />
             <h3>{truncateTitle(ticket.title)}</h3>
           </div>
           <div className="kanban-card-body">
-            <img src={featureImg} alt="Ticket" className="kanban-card-image" />
+            
             <div className="kanban-card-details">
-              <img src={featureImg} alt="Tag" className="kanban-card-tag-image" />
+              <img src={priorityImages[ticket.priority]} alt="Tag" className="kanban-card-tag-image" />
+              <svg style={{ width: "10px", height: "10px", marginRight: "10px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="#afb1b6" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                </svg>
               <p>{ticket.tag.join(", ")}</p>
             </div>
           </div>
@@ -55,24 +76,36 @@ const KanbanCard = ({ ticket, users, groupBy }) => {
         <>
           <div className="kanban-card-header">
             <h3>{ticket.id}</h3>
-            <img src={featureImg} alt="Ticket" />
+            <img src={usrs} style={{ width: "15px", height: "15px", marginRight: "10px" }} alt="Ticket" />
           </div>
+
           <div className="car">
-            <h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', textAlign: 'left' }}>
               {/* Only show the status image if groupBy is NOT 'status' */}
               {groupBy !== "status" && (
                 <img
                   src={statusImages[ticket.status]} // Correctly map status to image
                   alt={ticket.status}
-                  style={{ width: "20px", height: "20px", marginRight: "10px" }}
+                  style={{ width: "15px", height: "15px", marginRight: "10px" }}
                 />
               )}
               {truncateTitle(ticket.title)}
             </h3>
+
             {/* <p>Status: {ticket.status}}</p> */}
             {/* <p>Priority: {priorityLabels[ticket.priority]}</p> */}
-            <p><svg  style={{ width: "20px", height: "20px", marginRight: "10px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#afb1b6" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
-</svg>Feature Request</p>
+
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                {groupBy !== "priority" && (
+                  <img src={priorityImages[ticket.priority]} style={{ width: "15px", height: "15px", marginRight: "10px" }} alt="Status" />
+                )}
+                <svg style={{ width: "10px", height: "10px", marginRight: "10px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="#afb1b6" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/>
+                </svg>
+                {/* <p style={{ marginRight: "10px" }}>Feature Request</p> */}
+                <p>{ticket.tag.join(", ")}</p>
+            </div>
+
           </div>
         </>
       )}
