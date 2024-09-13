@@ -25,7 +25,7 @@ const KanbanBoard = () => {
   const [users, setUsers] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
-  const dropdownRef = useRef(null); // Ref for the dropdown
+  const dropdownRef = useRef(null); 
 
   const statusImages = {
     "Backlog": np14,
@@ -50,7 +50,7 @@ const KanbanBoard = () => {
   }, []);
 
   useEffect(() => {
-    // Close the dropdown when clicking outside of it
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
@@ -63,9 +63,9 @@ const KanbanBoard = () => {
 
   const sortedTickets = tickets.sort((a, b) => {
     if (sortBy === "priority") {
-      return b.priority - a.priority; // Sort by descending priority
+      return b.priority - a.priority; 
     }
-    return a.title.localeCompare(b.title); // Sort alphabetically by title
+    return a.title.localeCompare(b.title); 
   });
 
   let allGroups;
@@ -74,7 +74,7 @@ const KanbanBoard = () => {
   } else if (groupBy === "priority") {
     allGroups = [4, 3, 2, 1, 0];
   } else if (groupBy === "user") {
-    allGroups = users.map(user => user.name); // Use all user names
+    allGroups = users.map(user => user.name); 
   }
 
   const groupedTickets = sortedTickets.reduce((groups, ticket) => {
@@ -119,10 +119,10 @@ const KanbanBoard = () => {
     "Cancel": "Cancel",
   };
 
-  const [selectedDisplay, setSelectedDisplay] = useState("Selected"); // Set initial value to empty
+  const [selectedDisplay, setSelectedDisplay] = useState("Selected"); 
 
   const toggleDropdown = (e) => {
-    setSelectedDisplay(e.target.value); // Update state on selection
+    setSelectedDisplay(e.target.value); 
   };
 
   return (
@@ -134,7 +134,7 @@ const KanbanBoard = () => {
           <img src={disp} alt="Display Icon" className="display-icon" />
           <span>Display</span>
             <select value={selectedDisplay} onChange={toggleDropdown}>
-              <option value="Selected" disabled hidden>Select Display</option> {/* Placeholder option */}
+              <option value="Selected" disabled hidden>Select Display</option>
               <option value="GroupBy">Group by</option>
               <option value="SortBy">Sort by</option>
             </select>
@@ -153,7 +153,6 @@ const KanbanBoard = () => {
             </div>
           )}
 
-          {/* Conditionally render Sort By dropdown */}
           {selectedDisplay === "SortBy" && (
             <div className="dropdown-item">
               <label>
@@ -169,7 +168,6 @@ const KanbanBoard = () => {
       </div>
 
       <div className="kanban-columns ank">
-        {/* Loop through all possible groups */}
         
         {allGroups.map((group) => (
           <div key={group} className="kanban-column">
@@ -203,7 +201,6 @@ const KanbanBoard = () => {
               </span></p>
               
               
-              {/* Add icons */}
               <p className="c1"><span>
                 <img
                   src={np7}

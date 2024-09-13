@@ -1,6 +1,5 @@
 import React from "react";
 import "./KanbanCard.css";
-import img from "../images/leetcodee.png";
 import np1 from "../images/Done.svg";
 import np5 from "../images/To-do.svg";
 import np2 from "../images/in-progress.svg";
@@ -14,15 +13,12 @@ import np22 from "../images/Img - Low Priority.svg";
 import np23 from "../images/Img - High Priority.svg";
 import np24 from "../images/Img - Medium Priority.svg";
 
-import featureImg from "../images/Done.svg"; // Assuming this is the feature image
-import up from "../images/SVG - Urgent Priority grey.svg"
 
 const KanbanCard = ({ ticket, users, groupBy }) => {
   console.log(groupBy);
   console.log(ticket.priority);
   const priorityLabels = ["No Priority", "Low", "Medium", "High", "Urgent"];
 
-  // Map statuses to corresponding images
   const statusImages = {
     "Backlog": np4,
     "Todo": np5,
@@ -41,7 +37,6 @@ const KanbanCard = ({ ticket, users, groupBy }) => {
 
   const user = users.find(user => user.id === ticket.userId);
 
-  // Function to truncate title if it has more than 8 words
   const truncateTitle = (title) => {
     const words = title.split(" ");
     if (words.length > 5) {
@@ -84,7 +79,7 @@ const KanbanCard = ({ ticket, users, groupBy }) => {
               {/* Only show the status image if groupBy is NOT 'status' */}
               {groupBy !== "status" && (
                 <img
-                  src={statusImages[ticket.status]} // Correctly map status to image
+                  src={statusImages[ticket.status]} 
                   alt={ticket.status}
                   style={{ width: "15px", height: "15px", marginRight: "10px" }}
                 />
