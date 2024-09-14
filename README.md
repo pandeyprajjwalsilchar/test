@@ -50,3 +50,19 @@ Status Levels:
 		Backlog
 		Cancelled
 
+Here are some demo:
+Group by priority-
+
+![k1](https://github.com/user-attachments/assets/27bddbd4-eb20-4843-a5b6-f5e65c1ede84)
+
+
+Group by user and Sort by priority-
+
+![k2](https://github.com/user-attachments/assets/e05ceca3-c72c-43e1-82b1-56e72171eeda)
+
+
+Group by user and Sort by title-
+
+![k3](https://github.com/user-attachments/assets/3be00cc2-4804-454e-ab04-b086375042d8)
+
+
